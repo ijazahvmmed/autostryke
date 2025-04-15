@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | AutoStryke - AI Automation Agency</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Geist+Sans:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+    
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #06b6d4;
+      --accent: #8b5cf6;
+      --background: #0f172a;
+      --surface: #1e293b;
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+    }
+
+    body {
+      font-family: 'Geist Sans', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--background);
+      color: var(--text);
+    }
+
+    .mono {
+      font-family: 'Geist Mono', monospace;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+      color: var(--text-secondary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glass-effect {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .team-card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="fixed w-full glass-effect z-50 flex justify-between items-center p-5">
+    <a href="landing.html" class="text-xl font-bold gradient-text mono">AutoStryke</a>
+    <nav class="hidden md:flex space-x-6">
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="landing.html#contact" class="nav-link">Contact</a>
+    </nav>
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-background/95 z-40 hidden">
+    <div class="flex flex-col items-center justify-center h-full space-y-8">
+      <a href="services.html" class="nav-link text-xl">Services</a>
+      <a href="about.html" class="nav-link text-xl">About</a>
+      <a href="blog.html" class="nav-link text-xl">Blog</a>
+      <a href="landing.html#contact" class="nav-link text-xl">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="min-h-[40vh] flex items-center justify-center text-center py-20 px-4 pt-32">
+    <div data-aos="fade-up" data-aos-duration="1000">
+      <h1 class="text-5xl font-bold mb-6 gradient-text mono">About Us</h1>
+      <p class="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
+        Empowering businesses with intelligent automation solutions
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20 px-4 md:px-6 max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right">
+        <h2 class="text-3xl font-bold mb-6 gradient-text mono">Our Mission</h2>
+        <p class="text-text-secondary text-lg leading-relaxed mb-6">
+          At AutoStryke, we're on a mission to democratize AI automation for small businesses. We believe that every business, regardless of size, should have access to powerful automation tools that can transform their operations.
+        </p>
+        <p class="text-text-secondary text-lg leading-relaxed">
+          Founded in 2024, we've helped hundreds of businesses streamline their operations, reduce manual work, and scale their growth through intelligent automation solutions.
+        </p>
+      </div>
+      <div class="relative" data-aos="fade-left">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl rounded-full"></div>
+        <div class="relative">
+          <svg class="w-64 h-64 mx-auto text-primary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.4 15C19.1277 15.6171 19.2583 16.3378 19.73 16.82L19.79 16.88C20.1656 17.2551 20.3765 17.7642 20.3765 18.295C20.3765 18.8258 20.1656 19.3349 19.79 19.71C19.4149 20.0856 18.9058 20.2965 18.375 20.2965C17.8442 20.2965 17.3351 20.0856 16.96 19.71L16.9 19.65C16.4178 19.1783 15.6971 19.0477 15.08 19.32C14.4755 19.5791 14.0826 20.1724 14.08 20.83V21C14.08 22.1046 13.1856 23 12.08 23C10.9744 23 10.08 22.1046 10.08 21V20.91C10.0642 20.2327 9.63587 19.6339 9 19.4C8.38291 19.1277 7.66219 19.2583 7.18 19.73L7.12 19.79C6.74485 20.1656 6.23582 20.3765 5.705 20.3765C5.17418 20.3765 4.66515 20.1656 4.29 19.79C3.91435 19.4149 3.70349 18.9058 3.70349 18.375C3.70349 17.8442 3.91435 17.3351 4.29 16.96L4.35 16.9C4.82167 16.4178 4.95231 15.6971 4.68 15.08C4.42093 14.4755 3.82764 14.0826 3.17 14.08H3C1.89543 14.08 1 13.1856 1 12.08C1 10.9744 1.89543 10.08 3 10.08H3.09C3.76733 10.0642 4.36613 9.63587 4.6 9C4.87231 8.38291 4.74167 7.66219 4.27 7.18L4.21 7.12C3.83435 6.74485 3.62349 6.23582 3.62349 5.705C3.62349 5.17418 3.83435 4.66515 4.21 4.29C4.58515 3.91435 5.09418 3.70349 5.625 3.70349C6.15582 3.70349 6.66485 3.91435 7.04 4.29L7.1 4.35C7.58219 4.82167 8.30291 4.95231 8.92 4.68H9C9.60447 4.42093 9.99738 3.82764 10 3.17V3C10 1.89543 10.8944 1 12 1C13.1056 1 14 1.89543 14 3V3.09C14.0026 3.74764 14.3955 4.34093 15 4.6C15.6171 4.87231 16.3378 4.74167 16.82 4.27L16.88 4.21C17.2551 3.83435 17.7642 3.62349 18.295 3.62349C18.8258 3.62349 19.3349 3.83435 19.71 4.21C20.0856 4.58515 20.2965 5.09418 20.2965 5.625C20.2965 6.15582 20.0856 6.66485 19.71 7.04L19.65 7.1C19.1783 7.58219 19.0477 8.30291 19.32 8.92V9C19.5791 9.60447 20.1724 9.99738 20.83 10H21C22.1046 10 23 10.8944 23 12C23 13.1056 22.1046 14 21 14H20.91C20.2524 14.0026 19.6591 14.3955 19.4 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 px-4 md:px-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-12 text-center gradient-text mono" data-aos="fade-up">Our Team</h2>
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      <div class="team-card p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-2">Ijas Ahammed</h3>
+        <p class="text-text-secondary mb-4">Founder & CEO</p>
+        <p class="text-text-secondary text-sm">
+          AI & Automation expert with 5+ years of experience in building scalable solutions.
+        </p>
+      </div>
+      <div class="team-card p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-2">Aysha Shillu</h3>
+        <p class="text-text-secondary mb-4">Head of Product</p>
+        <p class="text-text-secondary text-sm">
+          Product strategist specializing in AI-powered business solutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 px-4 md:px-6 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold mb-12 text-center gradient-text mono" data-aos="fade-up">Our Values</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-16 h-16 mx-auto mb-4 text-primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Innovation</h3>
+        <p class="text-text-secondary">
+          Constantly pushing boundaries to create better automation solutions.
+        </p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-16 h-16 mx-auto mb-4 text-primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Customer Focus</h3>
+        <p class="text-text-secondary">
+          Your success is our success. We're committed to your growth.
+        </p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-16 h-16 mx-auto mb-4 text-primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Reliability</h3>
+        <p class="text-text-secondary">
+          Building robust, secure, and scalable automation solutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-text-secondary py-8 border-t border-surface">
+    © 2025 AutoStryke. All rights reserved.
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html> 

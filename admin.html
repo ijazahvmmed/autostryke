@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Admin - AutoStryke</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;600;700&family=Geist+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --background: #0a0a0a;
+            --surface: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #a1a1aa;
+        }
+        
+        body {
+            font-family: 'Geist Sans', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .mono {
+            font-family: 'Geist Mono', monospace;
+        }
+
+        /* Updated input styles */
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        textarea {
+            background-color: var(--surface) !important;
+            color: var(--text) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="url"]::placeholder,
+        textarea::placeholder {
+            color: var(--text-secondary) !important;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="url"]:focus,
+        textarea:focus {
+            border-color: var(--primary) !important;
+            outline: none !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 gradient-text">Newsletter Admin</h1>
+        
+        <div class="bg-surface rounded-xl p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Send Newsletter</h2>
+            <form id="newsletterForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Subject</label>
+                    <input type="text" id="subject" required
+                        class="w-full px-4 py-2 rounded-lg bg-background border border-white/10 focus:outline-none focus:border-primary">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-2">Content</label>
+                    <textarea id="content" rows="6" required
+                        class="w-full px-4 py-2 rounded-lg bg-background border border-white/10 focus:outline-none focus:border-primary"></textarea>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-2">CTA Text (Optional)</label>
+                    <input type="text" id="ctaText"
+                        class="w-full px-4 py-2 rounded-lg bg-background border border-white/10 focus:outline-none focus:border-primary">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-2">CTA Link (Optional)</label>
+                    <input type="url" id="ctaLink"
+                        class="w-full px-4 py-2 rounded-lg bg-background border border-white/10 focus:outline-none focus:border-primary">
+                </div>
+                
+                <button type="submit"
+                    class="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:opacity-90 transition-opacity">
+                    Send Newsletter
+                </button>
+            </form>
+        </div>
+        
+        <div class="bg-surface rounded-xl p-6">
+            <h2 class="text-xl font-semibold mb-4">Subscribers</h2>
+            <div id="subscribersList" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <script>
+        // Load subscribers
+        async function loadSubscribers() {
+            try {
+                const response = await fetch('/api/subscribers');
+                const subscribers = await response.json();
+                const list = document.getElementById('subscribersList');
+                list.innerHTML = subscribers.map(email => `
+                    <div class="p-3 bg-background rounded-lg">
+                        <span class="mono">${email}</span>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading subscribers:', error);
+            }
+        }
+
+        // Send newsletter
+        document.getElementById('newsletterForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const subject = document.getElementById('subject').value;
+            const content = document.getElementById('content').value;
+            const ctaText = document.getElementById('ctaText').value;
+            const ctaLink = document.getElementById('ctaLink').value;
+            
+            try {
+                const response = await fetch('/api/send-newsletter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        subject,
+                        content,
+                        ctaText,
+                        ctaLink
+                    }),
+                });
+                
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                console.error('Error sending newsletter:', error);
+                alert('Failed to send newsletter. Please try again.');
+            }
+        });
+
+        // Load subscribers on page load
+        loadSubscribers();
+    </script>
+
+    <!-- Footer -->
+    <footer class="text-center text-sm text-text-secondary py-8 border-t border-surface">
+        © 2025 AutoStryke. All rights reserved.
+    </footer>
+</body>
+</html> 

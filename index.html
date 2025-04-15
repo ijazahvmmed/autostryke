@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoStryke | AI Automation for Small Businesses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Geist+Sans:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+    
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #06b6d4;
+      --accent: #8b5cf6;
+      --background: #0f172a;
+      --surface: #1e293b;
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+    }
+
+    body {
+      font-family: 'Geist Sans', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--background);
+      color: var(--text);
+    }
+
+    .mono {
+      font-family: 'Geist Mono', monospace;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+      color: var(--text-secondary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .service-card {
+      transition: all 0.3s ease;
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+    }
+
+    .cta-button {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .cta-button:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glass-effect {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .service-card {
+        margin: 0 1rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Base styles */
+    body {
+        background: #000;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Navigation */
+    .nav-link {
+        color: #fff;
+        transition: color 0.3s;
+        position: relative;
+    }
+
+    .nav-link:hover {
+        color: #818cf8;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(90deg, #6366f1, #818cf8);
+        transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    /* Glass effect */
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Gradient text */
+    .gradient-text {
+        background: linear-gradient(90deg, #6366f1, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* CTA Button */
+    .cta-button {
+        background: linear-gradient(90deg, #6366f1, #818cf8);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Mobile menu */
+    @media (max-width: 768px) {
+        .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .glass-effect {
+            padding: 1.5rem;
+        }
+
+        .grid {
+            gap: 1rem;
+        }
+    }
+
+    /* Animations */
+    [data-aos] {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s, transform 0.6s;
+    }
+
+    [data-aos].aos-animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-white">AutoStryke</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="md:hidden text-white" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-40 hidden">
+    <div class="container mx-auto px-4 py-20">
+        <div class="flex flex-col space-y-6 text-center">
+            <a href="services.html" class="text-2xl text-white hover:text-indigo-400 transition-colors">Services</a>
+            <a href="about.html" class="text-2xl text-white hover:text-indigo-400 transition-colors">About</a>
+            <a href="blog.html" class="text-2xl text-white hover:text-indigo-400 transition-colors">Blog</a>
+            <a href="#contact" class="text-2xl text-white hover:text-indigo-400 transition-colors">Contact</a>
+        </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center pt-20 px-4">
+    <div class="container mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text" data-aos="fade-up">Save Hours, Grow Faster</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            Automate your business with AI. No coding required.
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+            <a href="/#contact" class="cta-button">Book Free Automation Audit</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 px-4">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="glass-effect p-6 rounded-xl text-center" data-aos="fade-up">
+                <div class="text-4xl font-bold gradient-text mb-2">98%</div>
+                <p class="text-gray-300">Time Saved</p>
+            </div>
+            <div class="glass-effect p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-4xl font-bold gradient-text mb-2">500+</div>
+                <p class="text-gray-300">Businesses Automated</p>
+            </div>
+            <div class="glass-effect p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
+                <p class="text-gray-300">Support</p>
+            </div>
+            <div class="glass-effect p-6 rounded-xl text-center" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-4xl font-bold gradient-text mb-2">₹999</div>
+                <p class="text-gray-300">Starting Price</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 px-4 md:px-6 max-w-6xl mx-auto">
+    <h3 class="text-3xl font-semibold mb-12 text-center gradient-text mono" data-aos="fade-up">Our Services</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+      <!-- WhatsApp Automation Card -->
+      <a href="services.html" class="service-card p-6 rounded-xl hover:scale-105 transition-all duration-300">
+        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold gradient-text mb-3">WhatsApp Automation</h3>
+        <p class="text-text-secondary mb-4">
+          24/7 customer support with AI-powered chatbots
+        </p>
+        <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 rounded-lg mb-4">
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>24/7 Support</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Automate Responses</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Booking Management</span>
+            </li>
+        </ul>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-white/70">Starting at</span>
+          <span class="text-lg font-bold gradient-text">₹1,499</span>
+      </div>
+      </a>
+
+      <!-- E-Commerce Automation Card -->
+      <a href="services.html" class="service-card p-6 rounded-xl hover:scale-105 transition-all duration-300">
+        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold gradient-text mb-3">E-Commerce Automation</h3>
+        <p class="text-text-secondary mb-4">
+          Streamline your online store operations
+        </p>
+        <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 rounded-lg mb-4">
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Inventory Management</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Order Processing</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Customer Retention</span>
+            </li>
+        </ul>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-white/70">Starting at</span>
+          <span class="text-lg font-bold gradient-text">₹1,999</span>
+      </div>
+      </a>
+
+      <!-- Branding Service Card -->
+      <a href="services.html" class="service-card p-6 rounded-xl hover:scale-105 transition-all duration-300">
+        <div class="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 7h.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold gradient-text mb-3">Branding Service</h3>
+        <p class="text-text-secondary mb-4">
+          Create a powerful brand identity for your business
+        </p>
+        <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-3 rounded-lg mb-4">
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Custom logo design</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Brand style guide</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Social media kit</span>
+            </li>
+        </ul>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-white/70">Starting at</span>
+          <span class="text-lg font-bold gradient-text">₹1,999</span>
+      </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="bg-surface py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+      <div class="w-16 h-16 mx-auto mb-6 text-primary">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19.4 15C19.1277 15.6171 19.2583 16.3378 19.73 16.82L19.79 16.88C20.1656 17.2551 20.3765 17.7642 20.3765 18.295C20.3765 18.8258 20.1656 19.3349 19.79 19.71C19.4149 20.0856 18.9058 20.2965 18.375 20.2965C17.8442 20.2965 17.3351 20.0856 16.96 19.71L16.9 19.65C16.4178 19.1783 15.6971 19.0477 15.08 19.32C14.4755 19.5791 14.0826 20.1724 14.08 20.83V21C14.08 22.1046 13.1856 23 12.08 23C10.9744 23 10.08 22.1046 10.08 21V20.91C10.0642 20.2327 9.63587 19.6339 9 19.4C8.38291 19.1277 7.66219 19.2583 7.18 19.73L7.12 19.79C6.74485 20.1656 6.23582 20.3765 5.705 20.3765C5.17418 20.3765 4.66515 20.1656 4.29 19.79C3.91435 19.4149 3.70349 18.9058 3.70349 18.375C3.70349 17.8442 3.91435 17.3351 4.29 16.96L4.35 16.9C4.82167 16.4178 4.95231 15.6971 4.68 15.08C4.42093 14.4755 3.82764 14.0826 3.17 14.08H3C1.89543 14.08 1 13.1856 1 12.08C1 10.9744 1.89543 10.08 3 10.08H3.09C3.76733 10.0642 4.36613 9.63587 4.6 9C4.87231 8.38291 4.74167 7.66219 4.27 7.18L4.21 7.12C3.83435 6.74485 3.62349 6.23582 3.62349 5.705C3.62349 5.17418 3.83435 4.66515 4.21 4.29C4.58515 3.91435 5.09418 3.70349 5.625 3.70349C6.15582 3.70349 6.66485 3.91435 7.04 4.29L7.1 4.35C7.58219 4.82167 8.30291 4.95231 8.92 4.68H9C9.60447 4.42093 9.99738 3.82764 10 3.17V3C10 1.89543 10.8944 1 12 1C13.1056 1 14 1.89543 14 3V3.09C14.0026 3.74764 14.3955 4.34093 15 4.6C15.6171 4.87231 16.3378 4.74167 16.82 4.27L16.88 4.21C17.2551 3.83435 17.7642 3.62349 18.295 3.62349C18.8258 3.62349 19.3349 3.83435 19.71 4.21C20.0856 4.58515 20.2965 5.09418 20.2965 5.625C20.2965 6.15582 20.0856 6.66485 19.71 7.04L19.65 7.1C19.1783 7.58219 19.0477 8.30291 19.32 8.92V9C19.5791 9.60447 20.1724 9.99738 20.83 10H21C22.1046 10 23 10.8944 23 12C23 13.1056 22.1046 14 21 14H20.91C20.2524 14.0026 19.6591 14.3955 19.4 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3 class="text-3xl font-semibold mb-6 gradient-text mono">Why AutoStryke?</h3>
+      <p class="text-text-secondary text-lg leading-relaxed">
+        We build lean, smart AI-driven automations tailored for Indian small businesses—WhatsApp bots, e-com workflows, content tools, and more. You get speed, scale, and peace of mind—without writing a single line of code.
+      </p>
+    </div>
+  </section>
+
+  <!-- Process Flow -->
+  <section class="py-20 px-4 md:px-6 max-w-6xl mx-auto">
+    <h3 class="text-3xl font-semibold mb-12 text-center gradient-text mono" data-aos="fade-up">How It Works</h3>
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-16 h-16 mx-auto mb-4 text-primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h4 class="text-lg font-semibold mb-2">Book a Demo</h4>
+        <p class="text-text-secondary">Schedule a free consultation</p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-16 h-16 mx-auto mb-4 text-primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h4 class="text-lg font-semibold mb-2">Requirements</h4>
+        <p class="text-text-secondary">Define your automation needs</p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-16 h-16 mx-auto mb-4 text-primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h4 class="text-lg font-semibold mb-2">Development</h4>
+        <p class="text-text-secondary"> We Build & test your solution</p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+        <div class="w-16 h-16 mx-auto mb-4 text-primary">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 10V3L4 14H11V21L20 10H13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h4 class="text-lg font-semibold mb-2">Launch</h4>
+        <p class="text-text-secondary">Go live with support</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="py-20 px-4">
+    <div class="container mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Latest Insights</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <div class="glass-effect rounded-xl overflow-hidden" data-aos="fade-up">
+                <div class="p-6">
+                    <div class="text-sm text-indigo-400 mb-2">Automation</div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">The Future of Business Automation</h3>
+                    <p class="text-gray-300 mb-4">Discover how AI is transforming business operations and what it means for your company.</p>
+                    <a href="blog.html" class="text-indigo-400 hover:text-indigo-300 transition-colors">Read More →</a>
+                </div>
+            </div>
+
+            <!-- Blog Post 2 -->
+            <div class="glass-effect rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-6">
+                    <div class="text-sm text-indigo-400 mb-2">AI</div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">AI in Customer Service</h3>
+                    <p class="text-gray-300 mb-4">Learn how AI is revolutionizing customer service and improving customer satisfaction.</p>
+                    <a href="blog.html" class="text-indigo-400 hover:text-indigo-300 transition-colors">Read More →</a>
+                </div>
+            </div>
+
+            <!-- Blog Post 3 -->
+            <div class="glass-effect rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-6">
+                    <div class="text-sm text-indigo-400 mb-2">E-Commerce</div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">E-Commerce Automation Guide</h3>
+                    <p class="text-gray-300 mb-4">A comprehensive guide to automating your e-commerce business for maximum efficiency.</p>
+                    <a href="blog.html" class="text-indigo-400 hover:text-indigo-300 transition-colors">Read More →</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <a href="blog.html" class="cta-button">View All Posts</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="py-20 px-4 md:px-6 text-center">
+    <h3 class="text-3xl font-semibold mb-6 gradient-text mono" data-aos="fade-up">Book a Free Demo</h3>
+    <p class="text-text-secondary mb-8 text-lg" data-aos="fade-up" data-aos-delay="100">Tell us what you want to automate. We'll take care of the rest.</p>
+
+    <div class="mx-auto max-w-2xl rounded-xl glass-effect overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+      <div data-tf-widget="SPAqaSDZ" data-tf-opacity="100" data-tf-iframe-props="title=AutoStryke Contact Form" data-tf-transitive-search-params data-tf-medium="snippet" style="width:100%;height:600px;"></div>
+      <script src="https://embed.typeform.com/next/embed.js"></script>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-text-secondary py-8 border-t border-surface">
+    © 2025 AutoStryke. All rights reserved.
+  </footer>
+
+  <!-- Live Chat Widget -->
+  <div id="chatWidget" class="fixed bottom-6 right-6 z-50">
+    <!-- Chat Button -->
+    <button 
+      id="chatButton" 
+      class="w-14 h-14 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300"
+      onclick="toggleChat()"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+      </svg>
+    </button>
+    
+    <!-- Chat Window -->
+    <div 
+      id="chatWindow" 
+      class="hidden absolute bottom-20 right-0 w-80 bg-surface rounded-lg shadow-xl border border-white/10 overflow-hidden"
+    >
+      <!-- Chat Header -->
+      <div class="bg-gradient-to-r from-primary to-secondary p-4 text-white">
+        <h3 class="font-semibold">Chat with us</h3>
+        <p class="text-sm opacity-80">We typically reply within minutes</p>
+      </div>
+      
+      <!-- Chat Messages -->
+      <div id="chatMessages" class="h-80 overflow-y-auto p-4 space-y-4">
+        <!-- Bot Message -->
+        <div class="flex items-start">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary mr-2"></div>
+          <div class="bg-white/5 rounded-lg p-3 max-w-[80%]">
+            <p class="text-sm">👋 Hi! How can we help you today?</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Chat Input -->
+      <div class="p-4 border-t border-white/10">
+        <div class="flex">
+          <input 
+            type="text" 
+            id="chatInput" 
+            placeholder="Type your message..." 
+            class="flex-1 px-3 py-2 rounded-l-lg bg-white/5 border border-white/10 focus:outline-none focus:border-primary text-white text-sm"
+          >
+          <button 
+            id="sendButton" 
+            class="px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-r-lg hover:opacity-90 transition-opacity"
+            onclick="sendMessage()"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+      });
+    });
+    
+    // Chat functionality
+    const chatButton = document.getElementById('chatButton');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+    const sendButton = document.getElementById('sendButton');
+    
+    function toggleChat() {
+      chatWindow.classList.toggle('hidden');
+    }
+    
+    function addMessage(message, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `flex items-start ${isUser ? 'justify-end' : ''}`;
+      
+      const avatar = isUser ? '' : '<div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary mr-2"></div>';
+      const messageClass = isUser ? 'bg-primary text-white' : 'bg-white/5';
+      
+      messageDiv.innerHTML = `
+        ${!isUser ? avatar : ''}
+        <div class="${messageClass} rounded-lg p-3 max-w-[80%]">
+          <p class="text-sm">${message}</p>
+        </div>
+        ${isUser ? avatar : ''}
+      `;
+      
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    function sendMessage() {
+      const message = chatInput.value.trim();
+      if (message) {
+        addMessage(message, true);
+        chatInput.value = '';
+        
+        // Simulate bot response
+        setTimeout(() => {
+          const responses = [
+            "Thanks for your message! Our team will get back to you shortly.",
+            "I understand you're interested in our services. Would you like to schedule a demo?",
+            "That's a great question! Let me connect you with our automation experts.",
+            "We'd love to help you automate your business. What specific challenges are you facing?"
+          ];
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+          addMessage(randomResponse);
+        }, 1000);
+      }
+    }
+    
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>
