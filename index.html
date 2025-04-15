@@ -224,9 +224,9 @@
         <div class="flex justify-between items-center">
             <a href="/" class="text-2xl font-bold text-white">AutoStryke</a>
             <div class="hidden md:flex space-x-8">
-                <a href="services.html" class="nav-link">Services</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="/services" class="nav-link">Services</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/blog" class="nav-link">Blog</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <button class="md:hidden text-white" onclick="toggleMenu()">
@@ -242,9 +242,9 @@
   <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-40 hidden">
     <div class="container mx-auto px-4 py-20">
         <div class="flex flex-col space-y-6 text-center">
-            <a href="services.html" class="text-2xl text-white hover:text-indigo-400 transition-colors">Services</a>
-            <a href="about.html" class="text-2xl text-white hover:text-indigo-400 transition-colors">About</a>
-            <a href="blog.html" class="text-2xl text-white hover:text-indigo-400 transition-colors">Blog</a>
+            <a href="/services" class="text-2xl text-white hover:text-indigo-400 transition-colors">Services</a>
+            <a href="/about" class="text-2xl text-white hover:text-indigo-400 transition-colors">About</a>
+            <a href="/blog" class="text-2xl text-white hover:text-indigo-400 transition-colors">Blog</a>
             <a href="#contact" class="text-2xl text-white hover:text-indigo-400 transition-colors">Contact</a>
         </div>
     </div>
@@ -471,14 +471,57 @@
     </div>
   </section>
 
-  <!-- Contact Form -->
-  <section id="contact" class="py-20 px-4 md:px-6 text-center">
-    <h3 class="text-3xl font-semibold mb-6 gradient-text mono" data-aos="fade-up">Book a Free Demo</h3>
-    <p class="text-text-secondary mb-8 text-lg" data-aos="fade-up" data-aos-delay="100">Tell us what you want to automate. We'll take care of the rest.</p>
+  <!-- Blog Section -->
+  <section class="py-20 px-4">
+    <div class="container mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Latest Insights</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <div class="glass-effect rounded-xl overflow-hidden" data-aos="fade-up">
+                <div class="p-6">
+                    <div class="text-sm text-indigo-400 mb-2">Automation</div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">The Future of Business Automation</h3>
+                    <p class="text-gray-300 mb-4">Discover how AI is transforming business operations and what it means for your company.</p>
+                    <a href="/blog" class="text-indigo-400 hover:text-indigo-300 transition-colors">Read More →</a>
+                </div>
+            </div>
 
-    <div class="mx-auto max-w-2xl rounded-xl glass-effect overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-      <div data-tf-widget="SPAqaSDZ" data-tf-opacity="100" data-tf-iframe-props="title=AutoStryke Contact Form" data-tf-transitive-search-params data-tf-medium="snippet" style="width:100%;height:600px;"></div>
-      <script src="https://embed.typeform.com/next/embed.js"></script>
+            <!-- Blog Post 2 -->
+            <div class="glass-effect rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-6">
+                    <div class="text-sm text-indigo-400 mb-2">AI</div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">AI in Customer Service</h3>
+                    <p class="text-gray-300 mb-4">Learn how AI is revolutionizing customer service and improving customer satisfaction.</p>
+                    <a href="/blog" class="text-indigo-400 hover:text-indigo-300 transition-colors">Read More →</a>
+                </div>
+            </div>
+
+            <!-- Blog Post 3 -->
+            <div class="glass-effect rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-6">
+                    <div class="text-sm text-indigo-400 mb-2">E-Commerce</div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">E-Commerce Automation Guide</h3>
+                    <p class="text-gray-300 mb-4">A comprehensive guide to automating your e-commerce business for maximum efficiency.</p>
+                    <a href="/blog" class="text-indigo-400 hover:text-indigo-300 transition-colors">Read More →</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <a href="/blog" class="cta-button">View All Posts</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="py-20 px-4">
+    <div class="container mx-auto max-w-4xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-up">Get Started</h2>
+        <div class="glass-effect p-6 md:p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+            <div class="aspect-w-16 aspect-h-9">
+                <div data-tf-widget="SPAqaSDZ" data-tf-opacity="100" data-tf-iframe-props="title=AutoStryke Contact Form" data-tf-transitive-search-params data-tf-medium="snippet" style="width:100%;height:500px;"></div>
+                <script src="//embed.typeform.com/next/embed.js"></script>
+            </div>
+        </div>
     </div>
   </section>
 
